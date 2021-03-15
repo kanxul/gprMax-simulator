@@ -10,7 +10,7 @@ from tools.plot_Bscan import get_output_data, mpl_plot
 import inspect
 
 # Variables
-filename = 'cylinder_Bscan_2D'
+filename = 'cylinder_Bscan_2D_01'
 
 clear = lambda : os.system('clear')
 
@@ -22,11 +22,11 @@ def inspect_methods():
 
 def generate_Ascan_Bscan(filename):
     input_filepath = os.path.join('processing/', filename + '.in')
-    api(input_filepath, n = 60, geometry_only = False)
+    api(input_filepath, n = 100, geometry_only = False)
     merge_filepath = os.path.join('processing/', filename)
     merge_files(merge_filepath)
 
-# Plot time-traces  Radargramm
+# Plot time-traces Radargramm
 def plot_radargramm(filename):
 
     output_filepath = os.path.join('processing/', filename + '_merged.out')
@@ -35,7 +35,7 @@ def plot_radargramm(filename):
     rxcomponent = 'Ez'
     outputdata, dt = get_output_data(filename = output_filepath, rxnumber = rxnumber, rxcomponent = rxcomponent)
 
-
+    print(dt)
     plt = mpl_plot(filename = output_filepath, outputdata = outputdata, dt = dt, rxnumber = rxnumber, rxcomponent = rxcomponent)
     plt.show()
 
@@ -46,12 +46,11 @@ def main():
 
     print("Greeting from Main-Method")
 
-    inspect_methods()
+    #inspect_methods()
 
     generate_Ascan_Bscan(filename)
     
     plot_radargramm(filename)
-
 
 
 if __name__ == '__main__':
