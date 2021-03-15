@@ -1,7 +1,6 @@
 ## gprMax Simulator
 
 import os
-from IPython.display import display
 from gprMax.gprMax import api
 import matplotlib.pyplot as plt
 
