@@ -26,7 +26,7 @@ def generate_Ascan_Bscan(filename):
     merge_filepath = os.path.join('processing/', filename)
     merge_files(merge_filepath)
 
-
+# Plot time-traces  Radargramm
 def plot_radargramm(filename):
 
     output_filepath = os.path.join('processing/', filename + '_merged.out')
