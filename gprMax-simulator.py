@@ -16,11 +16,11 @@ filename = 'cylinder_Bscan_2D'
 
 clear = lambda : os.system('clear')
 
-def inspect_methods():
-    print(inspect.getargspec(merge_files))
-    print(inspect.getargspec(api))
-    print(inspect.getargspec(get_output_data))
-    print(inspect.getargspec(mpl_plot))
+# def inspect_methods():
+#     print(inspect.getargspec(merge_files))
+#     print(inspect.getargspec(api))
+#     print(inspect.getargspec(get_output_data))
+#     print(inspect.getargspec(mpl_plot))
 
 def generate_Ascan_Bscan(filename):
     input_filepath = os.path.join('processing/', filename + '.in')
@@ -45,7 +45,7 @@ def plot_radargramm(filename):
     print(save_filepath)
     
     
-    plt.imshow(outputdata, extent =[0,240,0,210], cmap = "seismic")
+    plt.imshow(outputdata, extent =[0,240,0,210], cmap = "Greys")
     plt.axis('off')
     plt.savefig(save_filepath, bbox_inches = 'tight', pad_inches = 0)
     plt.show()
@@ -62,8 +62,6 @@ def main():
     clear()
 
     print("Greeting from Main-Method")
-
-    #inspect_methods()
 
     #generate_Ascan_Bscan(filename)
     
