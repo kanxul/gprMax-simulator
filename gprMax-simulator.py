@@ -63,7 +63,7 @@ def main():
 
     print("Greeting from Main-Method")
 
-    #generate_Ascan_Bscan(filename)
+    generate_Ascan_Bscan(filename)
     
     plot_radargramm(filename)
 
