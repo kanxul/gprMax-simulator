@@ -39,16 +39,19 @@ def plot_radargramm(filename):
     outputdata, dt = get_output_data(filename = output_filepath, rxnumber = rxnumber, rxcomponent = rxcomponent)
 
     #plt = mpl_plot(filename = output_filepath, outputdata = outputdata, dt = dt, rxnumber = rxnumber, rxcomponent = rxcomponent)
-    #print(plt.savefig("test.png"))
 
-    print(outputdata)
+    print(type(outputdata))
     save_filepath = os.path.join('processing/', filename + '.png')
     print(save_filepath)
-    im = plt.imsave(save_filepath, outputdata, cmap = "seismic")
+    
+    
+    plt.imshow(outputdata, extent =[0,240,0,210], cmap = "seismic")
+    plt.axis('off')
+    plt.savefig(save_filepath, bbox_inches = 'tight', pad_inches = 0)
+    plt.show()
 
-    img = Image.open(save_filepath)
-    img.resize((240,210), Image.ANTIALIAS)
-    img.save("resized.png")
+
+
 
     
 
