@@ -10,7 +10,7 @@ from tools.plot_Bscan import get_output_data, mpl_plot
 import inspect
 
 # Variables
-filename = 'cylinder_Bscan_2D_01'
+filename = 'cylinder_Bscan_2D'
 
 clear = lambda : os.system('clear')
 
@@ -22,7 +22,7 @@ def inspect_methods():
 
 def generate_Ascan_Bscan(filename):
     input_filepath = os.path.join('processing/', filename + '.in')
-    api(input_filepath, n = 100, geometry_only = False)
+    api(input_filepath, n = 60, geometry_only = False)
     merge_filepath = os.path.join('processing/', filename)
     merge_files(merge_filepath)
 
@@ -48,7 +48,7 @@ def main():
 
     #inspect_methods()
 
-    generate_Ascan_Bscan(filename)
+    #generate_Ascan_Bscan(filename)
     
     plot_radargramm(filename)
 
