@@ -7,32 +7,32 @@ import matplotlib.pyplot as plt
 from tools.outputfiles_merge import merge_files, get_output_data
 from tools.plot_Bscan import get_output_data, mpl_plot
 
-import inspect
-
-from PIL import Image
-
 # Variables
 filename = 'cylinder_Bscan_2D'
 
 clear = lambda : os.system('clear')
 
-# def inspect_methods():
-#     print(inspect.getargspec(merge_files))
-#     print(inspect.getargspec(api))
-#     print(inspect.getargspec(get_output_data))
-#     print(inspect.getargspec(mpl_plot))
 
 def generate_Ascan_Bscan(filename):
-    input_filepath = os.path.join('processing/', filename + '.in')
+    print("Start simulate A-Scan: ")
+    path = 'processing'
+    try:
+        os.mkdir(path + '/01')
+    except FileExistsError as error:
+        pass
+    else:
+        print("Successfully created the directory %s" % path)
+    input_filepath = os.path.join(path, filename + '.in')
+    print(input_filepath)
     api(input_filepath, n = 60, geometry_only = False)
-    merge_filepath = os.path.join('processing/', filename)
+    merge_filepath = os.path.join(path, filename)
     merge_files(merge_filepath)
 
 # Plot time-traces Radargramm
 def plot_radargramm(filename):
     print("Plotting Radargramm")
 
-    output_filepath = os.path.join('processing/', filename + '_merged.out')
+    output_filepath = os.path.join('processing/01/', filename + '_merged.out')
 
     rxnumber = 1
     rxcomponent = 'Ez'
@@ -45,15 +45,12 @@ def plot_radargramm(filename):
     print(save_filepath)
     
     
-    plt.imshow(outputdata, extent =[0,240,0,210], cmap = "Greys")
+    plt.imshow(outputdata, extent =[0,240,0,210], cmap = "Greys")   
     plt.axis('off')
     plt.savefig(save_filepath, bbox_inches = 'tight', pad_inches = 0)
     plt.show()
 
-
-
-
-    
+  
 
 
 
@@ -65,7 +62,7 @@ def main():
 
     generate_Ascan_Bscan(filename)
     
-    plot_radargramm(filename)
+    #plot_radargramm(filename)
 
 
 if __name__ == '__main__':
