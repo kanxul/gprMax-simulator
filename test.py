@@ -19,19 +19,25 @@ def create_working_foldes(path):
             os.system('cp {0} {1}'.format(source, target))
         except OSError as error:
             pass
-    path = os.path.join(root, 'images')
-    os.mkdir(path)
+    try:
+        path = os.path.join(root, 'images')
+        os.mkdir(path)
+    except OSError as error:
+        pass
+
 
 def read_inputfiles(path):
     for root , dirs , files in os.walk(path, topdown=False):
         pass
     return root, dirs, files
     
+
 def generate_Ascan_Bscan(path):
     print("Start simulate A-Scan: ")
     api(path, n = 60, geometry_only = False)
     merge_file = path.removesuffix('.in')    
     merge_files(merge_file)
+
 
 
 def plot_radargramm(path):
@@ -47,7 +53,9 @@ def plot_radargramm(path):
     plt.imshow(outputdata, extent =[0,240,0,210], cmap = "Greys")   
     plt.axis('off')
     
-    plt.savefig(path.removesuffix('.in') + '.png', bbox_inches = 'tight', pad_inches = 0)
+    image_file = path.removesuffix('.in').split('/')
+    print(os.path.join(image_file[0], image_file[1] + '.png'))
+    plt.savefig(os.path.join(image_file[0] + '/images', image_file[1] + '.png'), bbox_inches = 'tight', pad_inches = 0)
     #plt.show()
 
 
