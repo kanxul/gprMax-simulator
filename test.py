@@ -34,7 +34,7 @@ def read_inputfiles(path):
 
 def generate_Ascan_Bscan(path):
     print("Start simulate A-Scan: ")
-    api(path, n = 60, geometry_only = False)
+    api(path, n = 60, geometry_only = False, gpu = [0,1])
     merge_file = path.removesuffix('.in')    
     merge_files(merge_file)
 
